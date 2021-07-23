@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <title>Edit-Student-Result</title>
+</head>
+
+<body style="height: 100vh;">
+    <div class="container">
+        <div class="heading"></div>
+        <form>
+            <div class="search">
+                <label for="search">Enter student Id :- </label>
+                <input type="text" id="search" placeholder="ex - 1234567890" required>
+                <button id="submit">Search</button>
+            </div>
+            <div class="form-info" id="show"></div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../../../js/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let loadheader = () => {
+                $.ajax({
+                    url: "../php/config.php",
+                    type: "POST",
+                    data: { id: 'editresult' },
+                    success: function (data) {
+                        $(".heading").html(data);
+                    }
+                })
+            }
+            loadheader();
+            let editrecord = () => {
+                let sid = $("#search").val();
+                $.ajax({
+                    url: "../php/editresult.php",
+                    type: "POST",
+                    data: { sid: sid },
+                    success: function (data) {
+                        $("#show").html(data);
+                    }
+                });
+            }
+            let url = window.location.search;
+            const urlprams = new URLSearchParams(url);
+            const edit = urlprams.get('edit');
+            let search = $('#search').val(edit);
+            $("#submit").on("click", function (e) {
+                e.preventDefault();
+                editrecord();
+            });
+            let updaterecord = (sid, name, classname, dob, math, science, social, hindi, english) => {
+                $.post(
+                    "../php/updateresult.php",
+                    {
+                        uid: sid,
+                        uname: name,
+                        uclassname: classname,
+                        udob: dob ,
+                        umath: math,
+                        uscience: science,
+                        usocial: social,
+                        uhindi: hindi,
+                        uenglish: english
+                    },
+                    function (data) {
+                        $(".container").html(data);
+                    }
+                );
+            }
+            $(document).on("click", "#updated", function (e) {
+                e.preventDefault();
+                let sid = $("#sid").val();
+                let name = $("#name").val();
+                let classname = $("#class").val();
+                let dob = $("#dob").val();
+                let math = $("#math").val();
+                let science = $("#science").val();
+                let social = $("#social").val();
+                let hindi = $("#hindi").val();
+                let english = $("#english").val();
+                updaterecord(sid, name, classname, dob, math, science, social, hindi, english);
+            });
+        });
+    </script>
+</body>
+
+</html>

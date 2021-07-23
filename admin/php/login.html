@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Admin-login</title>
+    <style>
+        #error{
+            position: absolute;
+            top: 28%;
+            left: 38%;
+            background-color: rgba(252, 3, 3, 0.356);
+            padding:20px;
+            border:2px solid red;
+            border-radius:1rem;
+            color: black;
+            font-size:1.2rem;
+            font-weight:600;
+        }
+    </style>
+</head>
+<body style="height: 100vh">
+    <div class="container">
+        <div class="heading">
+            <h1>Krishna Insitute Of Enginnering</h1>
+            <h2>Admin-Pannel</h2>
+            <h3 style="margin-top:5px;">Admin</h3>
+        </div>
+        <form>
+            <div class="form-info" style="margin-top:15%">
+                <table>
+                    <tr>
+                        <td><label>Username :- </label></td>
+                        <td><input type="text" id="username" placeholder="Enter username" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Password :- </label></td>
+                        <td><input type="date" id="password" placeholder="Enter password" required></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" id="login">login</button></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div id="error" hidden>Username and password does not match</div>
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+    <script hidden>
+        $(document).ready(function () {
+            $("#login").on('click',function(e){
+                e.preventDefault();
+                let username = $("#username").val();
+                let password = $("#password").val();
+                console.log(username, password)
+                $.post(
+                    "login.php",
+                    {
+                        username: username,
+                        password: password
+                    },
+                    function(data){
+                        if(data == 'success'){
+                            window.location.href = "http://localhost/StudentManagement/admin"
+                        }else{
+                            $("#error").show(1000);
+                        }
+                    }
+                )
+            });
+        });
+    </script>
+</body>
+</html>

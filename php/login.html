@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Login</title>
+</head>
+<body style="height:100vh;">
+    <div class="container">
+        <div class="heading"></div>
+        <form>
+            <table>
+                <thead>
+                    <th>User Id :- </th>
+                    <td><input type="text" id="userid" placeholder="Enter User Id" required></td>
+                </thead>
+                <thead>
+                    <th>Password :- </th>
+                    <td><input type="date" id="password" required></td>
+                </thead>
+                <thead>
+                    <td><button type="submit" id="submit">login</button></td>
+                </thead>
+            </table>
+        </form>
+        <div id="error" style="text-align:center;margin-top:4px;background-color: rgba(253, 47, 92, 0.459);padding: 10px;border-radius:10px;font-size:1.2rem;color:red;" hidden>userid and password is wrong</div>
+    </div>
+    <script type="text/javascript" src="../admin/js/jquery-3.6.0.js"></script>
+    <script>
+        const loadheader = () =>{
+            $.post(
+                "config.php",
+                {id: "login"},
+                function(data){
+                    $(".heading").html(data);
+                }
+            )
+        }
+        loadheader();
+        $("#submit").on("click",function(e){
+            e.preventDefault();
+            const userid = $("#userid").val();
+            const password =$("#password").val();
+            $.post(
+                "login.php",
+                {
+                    userid: userid,
+                    password: password,
+                },
+                function(data){
+                    if(data == 1){
+                        window.location.href = "http://localhost/StudentManagement/php/html/studentreport.html";
+                    }else{
+                        $("#error").show(1000);
+                    }
+                }
+            );
+        })
+    </script>
+</body>
+</html>

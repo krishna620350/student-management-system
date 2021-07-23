@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <title>Edit-Student-Record</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading"></div>
+        <form>
+            <div class="search">
+                <label for="search">Enter student Id :- </label>
+                <input type="text" id="search" placeholder="ex - 1234567890" required>
+                <button id="submit">Search</button>
+            </div>
+            <div class="form-info" id="show"></div>
+        </form>
+    </div>
+    <div id="error" hidden>cant update</div>
+    <div id="sucess" hidden>updated</div>
+    <script type="text/javascript" src="../../../js/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let loadheader = () => {
+                console.log("Load header")
+                $.ajax({
+                    url: "../php/config.php",
+                    type: "POST",
+                    data: { id: 'editrecord' },
+                    success: function (data) {
+                        $(".heading").html(data);
+                    }
+                })
+            }
+            loadheader();
+            let editrecord = () =>{
+                let sid = $("#search").val();
+                console.log(sid);
+                $.ajax({
+                    url: "../php/editrecord.php",
+                    type: "POST",
+                    data: { sid: sid },
+                    success: function (data) {
+                        $("#show").html(data);
+                    }
+                });
+            }
+            let url = window.location.search;
+            const urlprams = new URLSearchParams(url);
+            const edit = urlprams.get('edit');
+            let search = $('#search').val(edit);
+            $("#submit").on("click", function (e) {
+                e.preventDefault();
+                editrecord();
+            });
+            let updaterecord = (sid, name, fname, mname, classname, dob, adhar, email, phone) =>{
+                $.post(
+                    "../php/updaterecord.php",
+                    {uid: sid,uname: name,ufname: fname,umname: mname,uclassname: classname,udob: dob,uadhar: adhar,uemail: email,uphone: phone},
+                    function(data){
+                        if (data == 1) {
+                            $("#sucess").show();
+                        } else {
+                            $("#error").show();
+                        }
+                    }
+                );
+            }
+            $(document).on("click", "#updated", function(e){
+                let sid = $("#sid").val();
+                let name = $("#name").val();
+                let fname = $("#fname").val();
+                let mname = $("#mname").val();
+                let classname = $("#class").val();
+                let dob = $("#dob").val();
+                let adhar = $("#adhar").val();
+                let email = $("#email").val();
+                let phone = $("#phone").val();
+                updaterecord(sid, name, fname, mname, classname,dob, adhar, email, phone);
+            });
+        });
+    </script>
+</body>
+
+</html>

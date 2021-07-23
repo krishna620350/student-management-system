@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: black;
+  color:white;
+}
+.container {
+  width: 100%;
+  padding: 0px 15px;
+  margin: 0px auto;
+  /* background-color: red; */
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1152px;
+  }
+}
+.container .heading {
+  text-align: center;
+  margin-top: 5px;
+}
+.container .heading h1,
+h3 {
+  color: #3dfcd3;
+  text-shadow: 4px 6px 8px #969696;
+}
+.container .heading h2 {
+  color: #7cfca0;
+  text-shadow: 4px 6px 8px #818281;
+}
+.container nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  background-color: rgba(121, 119, 119, 0.171);
+  padding: 5px;
+}
+.container nav .menu {
+  margin-top: 3px;
+}
+.container nav .menu ul {
+  display: flex;
+  list-style: none;
+}
+.container nav .menu ul li {
+  margin-left: 10px;
+}
+.container nav .menu ul li :hover {
+  background-color: black;
+  color: blue;
+  padding: 5px;
+}
+.container nav .menu ul li a {
+  text-decoration: none;
+  color: azure;
+}
+.container nav .menu ul .sub-list-1 {
+  display: none;
+}
+.container nav .menu ul li:hover .sub-list-1 {
+  display: block;
+  position: absolute;
+  margin-top: 5px;
+  background-color: black;
+}
+.container nav .menu ul .sub-list-1 ul {
+  display: block;
+  padding: 10px;
+}
+.container nav .menu ul .sub-list-1 ul li {
+  margin-bottom: 5px;
+}
+/* .container nav .menu ul .sub-list-1 ul li input{
+
+} */
+.container nav .buttons ul{
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items:center;
+}
+.container nav .buttons .sub-logout{
+  display: none;
+}
+.container nav .buttons ul li:hover .sub-logout{
+  display:block;
+  position:absolute;
+  background-color: black;
+  padding:10px;
+}
+.container nav .buttons button {
+  padding: 5px;
+  margin-left: 5px;
+  background-color: rgba(226, 226, 226, 0.856);
+}
+.container nav .buttons a {
+  text-decoration: none;
+  color: red;
+  font-weight: 600;
+}
+.container #message{
+  margin-top:20%;
+  text-align: center;
+  color:white;
+}
+.container #message p{
+  background-color:rgba(252, 32, 32, 0.377);
+  padding:20px;
+  border-radius:10px;
+  font-size:18px;
+  font-weight:600;
+}
+.container .record table{
+  margin-top: 10px;
+  border: 2px solid white;
+  border-collapse: collapse;
+  width: 100%;
+}
+.container .record table thead th{
+  border: 2px solid rgba(199, 117, 253, 0.788);
+  padding: 10px;
+  color: #fc3d96;
+  background-color:rgba(189, 186, 186, 0.151);
+  font-weight:600;
+  text-align: center;
+  border-bottom:2px solid white;
+}
+.container .record table tr td{
+  border: 2px solid white;
+  padding: 10px;
+  text-align:center;
+  color: #3dfcfcc4;
+  font-weight: 600;
+  background-color: rgba(156, 155, 156, 0.192);
+}
+.container .record table tr td img{
+  max-width:100%;
+  max-height: 100%;
+}
+.container .record table tr td a{
+  text-decoration: none;
+  color: antiquewhite;
+}
+.container form .form-info{
+  display:flex;
+  justify-content:center;
+}
+.container form .form-info table{
+  margin-top:20px;
+  padding:30px;
+  background-color:rgba(151, 250, 253, 0.74);
+  border-radius: 10px;
+  box-shadow: 10px 10px 8px rgba(184, 184, 184, 0.548);
+}
+.container form .form-info table tr td{
+  text-align: end;
+  font-size:18px;
+  color:rgb(8, 8, 8);
+  padding:10px;
+  font-weight: 600;
+}
+.container form .form-info table tr td input{
+  background-color: rgba(73, 72, 72, 0.199);
+  padding:3px;
+  font-size:14px;
+  width: 100%;
+}
+.container form .form-info table tr td button{
+  padding:5px;
+  font-weight: 600;
+}
+.container form .search{
+  margin-top:20px;
+  text-align: center;
+  color: white;
+}
+.container form .search input, button{
+  padding: 5px;
+  color:black;
+  font-weight: 600;
+}

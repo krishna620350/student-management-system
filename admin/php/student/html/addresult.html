@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <title>Add-Student-Result</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading"></div>
+        <form action="../php/addresult.php" method="POST">
+            <div class="form-info">
+                <table>
+                    <tr>
+                        <td><label>Id :- </label></td>
+                        <td><input type="text" name="id" placeholder="Enter student id" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Name :- </label></td>
+                        <td><input type="text" name="name" placeholder="Enter student name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Date of birth :- </label></td>
+                        <td><input type="date" name="dob" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Class :- </label></td>
+                        <td><input type="text" name="class" placeholder="Enter student class" required></td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td><label>Marks :- </label></td>
+                        <td>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>Mathmatics :- </td>
+                                    <td><input type="text" name="math"  placeholder="Enter marks of mathmatics" required></td></tr>
+                                <tr>
+                                    <td>Science :- </td>
+                                    <td><input type="text" name="science" placeholder="Enter marks of science" required><td></td></tr>
+                                <tr>
+                                    <td>Social-Science :- </td>
+                                    <td><input type="text" name="social" placeholder="Enter marks of social science" required><td></td></tr>
+                                <tr>
+                                    <td>Hindi :- </td>
+                                    <td><input type="text" name="hindi" placeholder="Enter marks of hindi" required><td></td></tr>
+                                <tr>
+                                    <td>English :- </td>
+                                    <td><input type="text" name="english" placeholder="Enter marks of english" required></td></tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Add-Result</button></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../../../js/jquery-3.6.0.js"></script>
+    <script hidden>
+        $(document).ready(function () {
+            let loadheader = () => {
+                console.log("Load header")
+                $.ajax({
+                    url: "../php/config.php",
+                    type: "POST",
+                    data: { id: 'addresult' },
+                    success: function (data) {
+                        $(".heading").html(data);
+                    }
+                })
+            }
+            loadheader();
+        });
+    </script>
+</body>
+
+</html>

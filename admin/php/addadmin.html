@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Add-Student-Record</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading"></div>
+        <form action="addadmin.php" method="POST" enctype="multipart/form-data">
+            <div class="form-info">
+                <table>
+                    <tr>
+                        <td><label>Name :- </label></td>
+                        <td><input type="text" name="name" placeholder="Enter your name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Father Name :- </label></td>
+                        <td><input type="text" name="fname" placeholder="Enterfname your father name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Mother Name :- </label></td>
+                        <td><input type="text" name="mname" placeholder="Enter your mother name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Date of birth :- </label></td>
+                        <td><input type="date" name="dob" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Degination :- </label></td>
+                        <td><select name="degin" style="width:100%;padding: 8px;background-color:rgba(8, 8, 8, 0.199);color: black;font-weight: 600;" required>
+                            <option>Principal</option>
+                            <option>Teacher</option>
+                            <option>Staff</option>
+                            <option>Accounts</option>
+                            <option>Other</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label>Adhar Number :- </label></td>
+                        <td><input type="text" name="adhar" placeholder="Enter your adher number" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Email Id :- </label></td>
+                        <td><input type="email" name="email" placeholder="Enter your email id" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Phone No :- </label></td>
+                        <td><input type="phone" name="phone" placeholder="Enter your phone number" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Upload Photo :- </label></td>
+                        <td><input type="file" name="image" id="upload"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Add-Admin</button></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+    <script hidden>
+        $(document).ready(function () {
+            let loadheader = () => {
+                $.ajax({
+                    url: "student/php/config.php",
+                    type: "POST",
+                    data: { id: 'admin' },
+                    success: function (data) {
+                        $(".heading").html(data);
+                    }
+                })
+            }
+            loadheader();
+        })
+    </script>
+</body>
+
+</html>

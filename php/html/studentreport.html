@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading"></div>
+        <div class="navbar">
+            <nav>
+                <div class="menu">
+                    <ul>
+                        <li><a href="studentreport.html">Home</a></li>
+                        <li><a href="">Dashboard</a>
+                            <div class="submenu1">
+                                <ul>
+                                    <li><a href="#" id="correction">Correction-form</a></li>
+                                    <li><a href="#" id="profile">Display-Profile</a></li>
+                                    <li><a href="">Feedback</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#" id="result">Result</a></li>
+                    </ul>
+                </div>
+                <div class="logout">
+                    <p id="logout">logout</p>
+                    <button id="logoutbutton">Logout</button>
+                </div>
+            </nav>
+        </div>
+        <div class="notefication">
+            <h3 id="text">Notice:-</h3>
+            <div class="time"></div>
+            <div class="notice"></div>
+        </div>
+        <div class="profile">
+            <div class="studentprofile"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../admin/js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            let clockupdate = () =>{
+                let date = new Date();
+                let addzero = (x) =>{
+                    if(x<10){
+                        return x='0'+x;
+                    }else{
+                        return x;
+                    }
+                }
+                let twelvehour = (x) =>{
+                    if(x>12){
+                        return x=x-12;
+                    }else if(x==0){
+                        return x=12;
+                    }else{
+                        return x;
+                    }
+                }
+                let h = addzero(twelvehour(date.getHours()));
+                let m = addzero(date.getMinutes());
+                let s = addzero(date.getSeconds());
+                $(".time").text(h+":"+m+":"+s);
+            }
+            clockupdate();
+            setInterval(clockupdate,1000);
+            $.post(
+                "../config.php",
+                { id: "studentreport" },
+                function (data) {
+                    $(".heading").html(data);
+                }
+            );
+            let logout = (username) => {
+                $.post(
+                    "../logout.php",
+                    { id: username },
+                    function (data) {
+                        // console.log(data);
+                        if (username == 'studentreport') {
+                            $("#logout").html(data);
+                        } else {
+                            window.location.href = data;
+                        }
+                    }
+                );
+            }
+            logout("studentreport");
+            $("#logoutbutton").on("click", function (e) {
+                e.preventDefault();
+                logout("logout");
+            });
+            $("#profile").on("click", function (e) {
+                e.preventDefault();
+                $(".studentprofile").show(1000);
+                $.post(
+                    '../displayprofile.php',
+                    function (data){
+                        $("#text").hide(1000);
+                        $(".notice").hide(1000);
+                        $(".studentprofile").html(data);
+                    }
+                );
+            });
+            $("#result").on("click", function (e) {
+                e.preventDefault();
+                $(".studentprofile").show(1000);
+                $.post(
+                    '../displayresult.php',
+                    function (data){
+                        $("#text").hide(1000);
+                        $(".notice").hide(1000);
+                        $(".studentprofile").html(data);
+                    }
+                );
+            });
+            $("#correction").on("click", function (e) {
+                e.preventDefault();
+                $(".studentprofile").show(1000);
+                $.post(
+                    '../correction.php',
+                    function (data){
+                        $("#text").hide(1000);
+                        $(".notice").hide(1000);
+                        $(".studentprofile").html(data);
+                    }
+                );
+            });
+            $(document).on("click","#submit",function(e){
+                e.preventDefault();
+                let name = $("#name").val();
+                let fname = $("#fname").val();
+                let mname = $("#mname").val();
+                let date = $("#date").val();
+                let classname = $("#class").val();
+                let adhar = $("#adhar").val();
+                let phone = $("#phone").val();
+                let email = $("#email").val();
+                $.post(
+                    "../request.php",
+                    {
+                        rname:name,
+                        rfname:fname,
+                        rmname:mname,
+                        rdate:date,
+                        rclassname:classname,
+                        radhar:adhar,
+                        rphone:phone,
+                        remail:email
+                    },
+                    function (data){
+                        $(".studentprofile").html(data);
+                        $("#text").show(5000);
+                        $(".notice").show(5000);
+                    }
+                );
+            });
+            $(document).on("click","#close",function(){
+                $(".studentprofile").hide(1000);
+                $("#text").show(1000);
+                $(".notice").show(1000);
+            });
+            $(document).on("click","#edit-request",function(e){
+                e.preventDefault();
+                $.post(
+                    '../editresult.php',
+                    function (data) {
+                        $(".studentprofile").html(data)
+                    }
+                );
+            });
+            $(document).on("click","#corrapply", function (e){
+                e.preventDefault();
+                let name = $("#name").val();
+                let dob = $("#dob").val();
+                let text = $("#textarea").val();
+                $.post(
+                    '../updateresult.php',
+                    {
+                        rname: name,
+                        rdob: dob,
+                        rtext: text
+                    },
+                    function (data) {
+                        $(".studentprofile").html(data)
+                        $("#text").show(5000);
+                        $(".notice").show(5000);
+                    }
+                );
+            })
+        });
+    </script>
+</body>
+
+</html>

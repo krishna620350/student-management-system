@@ -1,0 +1,244 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:  black;
+    color:white;
+}
+.container {
+  width: 100%;
+  padding: 0px 15px;
+  margin: 0px auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1152px;
+  }
+}
+.container .heading{
+    background-image: url("../image/heading.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding:10px;
+    box-shadow: 5px 5px 5px rgba(133, 132, 132, 0.781);
+}
+.container .heading h1{
+    color: rgb(118, 46, 252);
+    text-shadow: 5px 2px 5px rgb(83, 83, 83);
+}
+.container .heading h2{
+    color: rgb(194, 1, 253);
+    text-shadow: 5px 2px 5px rgba(83, 83, 83, 0.774);
+}
+.container .heading h3{
+    color: rgba(253, 1, 140, 0.699);
+    text-shadow: 5px 2px 5px rgba(83, 83, 83, 0.849);
+    font-size: 1.5rem;
+}
+.container nav ul{
+    margin-top: 5px;
+    list-style:none;
+    background-color:black;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.container nav ul li .buttons button{
+    justify-content:end;
+    padding: 5px;
+}
+.container nav ul li .buttons button a{
+    text-decoration:none;
+    font-weight:600;
+}
+.container nav .sub-list-1{
+    display: none;
+}
+.container nav .sub-list-2{
+    display: none;
+}
+.container nav ul li:hover .sub-list-1{
+    display: block;
+    position: absolute;
+}
+.container nav ul li .hover-me:hover .sub-list-2{
+    display: block;
+    position: absolute;
+}
+.container nav .sub-list-1 .sub-list-2 ul{
+    background-color: black;
+    padding:20px;
+}
+.container nav .sub-list-1 ul{
+    margin-top: 0;
+    display: inline-block;
+    padding:20px;
+    background-color:  rgba(87, 87, 87, 0.342);
+    height:68vh;
+    width:100%;
+}
+.container nav .sub-list-1 ul li{
+    margin-bottom: 6rem;
+}
+.container nav .sub-list-1 ul li a{
+    text-decoration: none;
+    color:aliceblue
+}
+.container nav ul li img{
+    background-color: rgb(74, 74, 75);
+    width:10%;
+    height:10%;
+    border-radius:100%;
+}
+.container nav .text{
+    position: absolute;
+    top: 20%;
+    left: 16%;
+    width:64%;
+}
+.container form{
+    margin-top:20%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+.container form table{
+    padding:20px;
+    background-color:rgba(255, 120, 183, 0.747);
+    box-shadow: 5px 5px  5px 5px rgba(156, 156, 156, 0.308);
+}
+.container form table thead th,td{
+    font-size:1.2rem;
+    padding:20px;
+    margin-bottom: 10px;
+}
+.container form table thead td input{
+    font-size:1rem;
+    padding:5px;
+    background-color:rgba(255, 120, 183, 0.747);
+}
+.container form table thead td button{
+    font-size:1rem;
+    padding:5px;
+    font-weight:bold;
+}
+.container .navbar nav{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+.container .navbar nav .menu ul li a{
+    text-decoration: none;
+    color: white;
+    margin-left:10px;
+}
+.container .navbar nav .submenu1{
+    display:none;
+}
+.container .navbar nav .menu ul li:hover .submenu1{
+    display:block;
+    position: absolute;
+}
+.container .navbar nav .submenu1 ul{
+    display:inline-block;
+    padding:10px;
+}
+.container .navbar nav .submenu1 ul li{
+    margin-top:5px;
+}
+.container nav .logout{
+    display:flex;
+    justify-content:center;
+}
+.container .navbar nav .logout p{
+    padding:5px;
+    margin-right: 10px;
+    color: red;
+    font-weight: 700;
+}
+.container .navbar nav .logout button{
+    padding:5px;
+    font-weight: 700;
+    color: red;
+}
+.container .notefication h3, .time{
+    margin-bottom: 5px;
+    text-align: center;
+}
+.container .notefication h3{
+    color: rgb(0, 255, 98);
+    border-bottom: 2px solid rgba(160, 159, 159, 0.658);
+    font-weight: 700;
+}
+.container .notefication .time{
+    border: 2px solid rgba(116, 114, 114, 0.486);
+    border-radius: 10px;
+    padding:5px;
+    color:rgb(250, 209, 119);
+    font-size:1.5rem;
+}
+.container .notefication .notice{
+    background-color:rgba(73, 72, 72, 0.301);
+    padding:10px;
+}
+.container .profile{
+    display:flex;
+    justify-content:center;
+}
+.container .studentprofile h3{
+    text-align:center;
+    color: rgba(250, 140, 67, 0.863);
+}
+.container .studentprofile table{
+    margin-top: 5px;
+    background-color:rgba(114, 115, 116, 0.295);
+    padding:20px;
+}
+.container .studentprofile table thead th{
+    color: rgba(87, 228, 253, 0.726);
+    font-size: 1.2rem;
+    text-align: end;
+}
+.container .studentprofile table thead td{
+    color: rgba(75, 253, 179, 0.726);
+    font-size: 1.2rem;
+    width: 50%;
+}
+.container .studentprofile table thead td input{
+    padding:5px;
+    background-color:rgba(114, 115, 116, 0.295);
+}
+.container .studentprofile table thead td img{
+    width: 30%;
+    max-height: 20%;
+}
+.container .studentprofile table thead td textarea{
+    padding:10px;
+    font-size:1rem;
+    height: 202px;
+    width: 170px;
+}
+.container .studentprofile table thead th button{
+    padding:5px;
+    background-color: red;
+    color:black;
+}
